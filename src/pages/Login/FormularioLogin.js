@@ -9,11 +9,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginSuccess, submitLogin } from '_store';
 
 const schema = yup.object().shape({
-	username: yup.string().email('You must enter a valid email').required('You must enter a email'),
+	username: yup.string().email('You must enter a valid email.').required('You must enter a email.'),
 	password: yup
 		.string()
 		.required('Please enter your password.')
-		.matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, 'Password too weak')
+		.matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, 'Password too weak.')
 		.min(8, 'Should be 4 chars minimum.')
 		.max(20, 'Should be 40 chars maximum.')
 });
@@ -42,10 +42,10 @@ const FormularioLogin = () => {
 		}
 	};
 
-	useEffect(() => {
+	/*useEffect(() => {
 		setValue('username', 'tonysantana1492@gmail.com', { shouldDirty: true, shouldValidate: true });
 		setValue('password', 'TonySantana1492', { shouldDirty: true, shouldValidate: true });
-	}, [reset, setValue, trigger]);
+	}, [reset, setValue, trigger]);*/
 
 	useEffect(() => {
 		login.errors.forEach(error => {

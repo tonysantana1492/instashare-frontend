@@ -25,7 +25,7 @@ describe('<App />', () => {
 	it('renders LoggedInRouter', async () => {
 		const store = setupStore();
 		const payload = { token: 'dfdfdf', user: {} };
-    store.dispatch(setUser(payload));
+    	store.dispatch(setUser(payload));
 
 		const { getByText } = renderWithProviders(<App />, { store });
 
