@@ -75,7 +75,7 @@ describe('<Login />', () => {
 		expect(screen.queryByText(/Sending.../i)).toBeInTheDocument();
 	});
 
-	/*it('submits form and calls api', async () => {
+	it('submits form and calls api', async () => {
 		const buttonSubmit = screen.getByRole('button');
 		const email = screen.getByLabelText(/email/i);
 		const password = screen.getByLabelText(/Password/i);
@@ -86,7 +86,7 @@ describe('<Login />', () => {
 
 		window.fetch = jest.fn();
 		window.fetch.mockResolvedValueOnce({
-			json: async () => [{ error: { type: 'password', messsage: 'Invalid credentials' } }]
+			json: async () => { error: [{ type: 'password', message: 'Invalid credentials' }] }
 		});
 		
 		await act(() => {
@@ -105,7 +105,7 @@ describe('<Login />', () => {
 		expect(screen.queryByText(/Invalid credentials/i)).toBeInTheDocument();
 		// expect(errorMessage).toHaveTextContent(/mutation-error/i);
 		// expect(localStorage.setItem).toHaveBeenCalledWith("nuber-token", "XXX");
-	});*/
+	});
 
 	/*it('change to register page', async () => {
 

@@ -6,7 +6,7 @@ import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import _ from '_helpers/lodash';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginSuccess, submitLogin } from '_store';
+import { submitLogin } from '_store';
 
 const schema = yup.object().shape({
 	username: yup.string().email('You must enter a valid email.').required('You must enter a email.'),

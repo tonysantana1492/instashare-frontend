@@ -1,24 +1,9 @@
-import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-import { TOKEN_ENV, baseUrl } from 'constants';
-import { autoLogin, setUser, setUserLoggedOut, store, userLoggedOut } from '_store';
-import { fetchWrapper } from '_helpers';
+import { TOKEN_ENV } from 'constants';
+import { autoLogin, setUser, setUserLoggedOut, store } from '_store';
 
 class JwtService {
-	register = model => {
-		return new Promise((resolve, reject) => {
-			fetchWrapper
-				.post(`${baseUrl}/auth/register`, model)
-				.then(response => {
-					if (response.user) {
-						this.setSession(response);
-						resolve(response);
-					} else {
-						reject(response.error);
-					}
-				});			
-		});
-	};
+	
 
 	setSession = (data) => {
 
@@ -46,45 +31,6 @@ class JwtService {
 		}
 	};
 
-	signInWithEmailAndPassword = ({ username, password }) => {
-		return new Promise((resolve, reject) => {
-			fetchWrapper
-				.post(`${baseUrl}/auth/signin`, {
-					username,
-					password
-				})
-				.then(response => {
-					if (response.user) {
-						//this.setSession(response);
-						resolve(response);
-					} else {
-						reject(response.error);
-					}
-				}).catch(error => {					
-					reject([{"type":"server","message":"El servidor ha rechazado la conexión"}]);
-				});
-		});
-	};
-
-	signInWithToken = () => {
-		return new Promise((resolve, reject) => {
-			fetchWrapper
-				.post(`${baseUrl}/auth/access-token`, {
-					token: this.getAccessToken()
-				})
-				.then(response => {
-					if (response.user) {
-						resolve(response);
-					} else {
-						reject([{"type":"server","message":"El servidor ha rechazado la conexión"}]);
-					}
-				})
-				.catch(error => {
-					reject([{"type":"server","message":"El servidor ha rechazado la conexión"}]);
-				});
-		});
-	};
-
 	isAuthTokenValid = token => {
 		if (!token) {
 			return false;
@@ -97,17 +43,6 @@ class JwtService {
 		}
 
 		return true;
-	};
-
-	getTokenInfo = async () => {
-		const token = this.getAccessToken();
-
-		if (!token) {
-			return false;
-		}
-
-		const decoded = await jwtDecode(token);
-		return decoded;
 	};
 
 	getAccessToken = () => {

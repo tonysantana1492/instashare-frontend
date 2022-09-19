@@ -1,37 +1,62 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { baseUrl } from 'constants';
 import JwtService from 'services/jwtService';
+import { fetchWrapper } from '_helpers';
 // import { setUserData, userLoggedOut } from './users.slice';
 
-export const submitLogin = ({ username, password }) => async dispatch => {
+export const submitLogin =
+	({ username, password }) =>
+	async dispatch => {
 
-	dispatch(setLoginLoading(true))
+		dispatch(setLoginLoading(true));
 
-	return JwtService
-		.signInWithEmailAndPassword({ username, password })
-		.then(data => {			
-			// dispatch(setUserData(data));
-			JwtService.setSession(data);
-			return dispatch(loginSuccess());
-		})
-		.catch(errors => {
-			JwtService.setSession(null);
-			return dispatch(loginError(errors));
-		});
-};
+		let response;
+
+		try {
+			response = await fetchWrapper.post(`${baseUrl}/auth/signin`, {
+				username,
+				password
+			});
+		} catch (e) {
+			response = { error: [{ type: 'server', message: 'El servidor ha rechazado la conexión' }] };
+		}
+
+		dispatch(setLoginLoading(false));
+
+		if (response.user) {
+			dispatch(loginSuccess());
+			JwtService.setSession(response);
+			return;
+		}
+
+		dispatch(loginError(response.error));
+		// JwtService.setSession(null);
+
+	};
 
 export const autoLogin = () => async dispatch => {
-	return JwtService.signInWithToken()
-		.then(data => {
-			// dispatch(setUserData(data));
-			JwtService.setSession(data);
-			return dispatch(loginSuccess());
-		})
-		.catch(errors => {
-			JwtService.setSession(null);
-			return dispatch(loginError(errors));
-		});
-};
 
+	let response;
+
+	try {
+		response = await fetchWrapper.post(`${baseUrl}/auth/access-token`, {
+			token: JwtService.getAccessToken()
+		});
+
+	}catch (e){
+		response = { error: [{ type: 'server', message: 'El servidor ha rechazado la conexión' }] };
+	}
+
+	if(response.user) {
+		JwtService.setSession(response.user);
+		dispatch(loginSuccess());
+		return;
+	}
+
+	JwtService.setSession(null);
+	dispatch(loginError(response.error));
+
+};
 
 const initialState = {
 	success: false,
@@ -59,7 +84,6 @@ const loginSlice = createSlice({
 	},
 	extraReducers: {}
 });
-
 
 export const { loginSuccess, loginError, setLoginLoading } = loginSlice.actions;
 export const loginReducer = loginSlice.reducer;

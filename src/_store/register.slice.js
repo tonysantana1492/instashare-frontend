@@ -1,30 +1,38 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { baseUrl } from 'constants';
 import JwtService from 'services/jwtService';
-// import { setUserData } from './users.slice';
+import { fetchWrapper } from '_helpers';
 
+export const submitRegister =
+	({ displayname, password, username }) =>
+	async dispatch => {
+		dispatch(setRegisterLoading(true));
 
-export const submitRegister = ({ displayname, password, username }) => async dispatch => {
+		let response;
 
-	dispatch(setRegisterLoading(true));
-	
-	return JwtService
-		.register({
-			displayname,
-			password,
-			username
-		})
-		.then(data => {
-			// dispatch(setUserData(data));
-			JwtService.setSession(data);
-			return dispatch(registerSuccess());
-		})
-		.catch(errors => {
-			JwtService.setSession(null);
-			return dispatch(registerError(errors));
-		});
-};
+		try {
+			response = await fetchWrapper.post(`${baseUrl}/auth/register`, {
+				displayname,
+				password,
+				username
+			});
+		} catch (e) {
+			response = { error: [{ type: 'server', message: 'El servidor ha rechazado la conexión' }] };
+		}
 
-const initialState = {	
+		dispatch(setRegisterLoading(false));
+
+		if (response.user) {
+			dispatch(registerSuccess());
+			JwtService.setSession(response);
+			return;
+		}
+
+		dispatch(registerError(response.error));
+		// JwtService.setSession(null);
+	};
+
+const initialState = {
 	success: false,
 	errors: [],
 	isLoading: false
@@ -47,8 +55,7 @@ const registerSlice = createSlice({
 		setRegisterLoading: (state, action) => {
 			state.isLoading = action.payload;
 		}
-	},
-	
+	}
 });
 
 export const { registerSuccess, registerError, setRegisterLoading } = registerSlice.actions;
