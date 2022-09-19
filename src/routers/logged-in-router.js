@@ -1,8 +1,13 @@
+import FileManager from 'pages/FileManager/FileManager';
 import { Fragment } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import Nav from '_components/Nav';
 
 const clientRoutes = [
-	
+	{
+		path: '/',
+		component: <FileManager />
+	},
 	{
 		path: '*',
 		component: <Navigate to="/" replace />
@@ -22,5 +27,4 @@ export const LoggedInRouter = () => {
 			</main>
 		</Fragment>
 	);
-
 };
