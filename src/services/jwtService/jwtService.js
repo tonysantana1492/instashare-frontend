@@ -16,20 +16,7 @@ class JwtService {
 					} else {
 						reject(response.error);
 					}
-				});
-			/*axios
-				.post(`${baseUrl}/auth/register`, model)
-				.then(response => {
-					if (response.data.user) {
-						this.setSession(response.data.token);						
-						resolve(response.data);
-					} else {
-						reject(response.data.error);
-					}
-				})
-				.catch(error => {
-					reject(error.response.data);
-				});*/
+				});			
 		});
 	};
 
@@ -73,10 +60,9 @@ class JwtService {
 					} else {
 						reject(response.error);
 					}
-				}).catch(error => {
-					//this.setSession(null);
-					reject(new Error('Failed to login with token.'));
-				});;
+				}).catch(error => {					
+					reject([{"type":"server","message":"El servidor ha rechazado la conexión"}]);
+				});
 		});
 	};
 
@@ -88,16 +74,13 @@ class JwtService {
 				})
 				.then(response => {
 					if (response.user) {
-						//this.setSession(response);
 						resolve(response);
 					} else {
-						//this.setSession(null);
-						reject(new Error('Failed to login with token.'));
+						reject([{"type":"server","message":"El servidor ha rechazado la conexión"}]);
 					}
 				})
 				.catch(error => {
-					//this.setSession(null);
-					reject(new Error('Failed to login with token.'));
+					reject([{"type":"server","message":"El servidor ha rechazado la conexión"}]);
 				});
 		});
 	};
