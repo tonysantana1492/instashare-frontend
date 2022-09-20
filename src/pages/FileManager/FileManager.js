@@ -32,7 +32,7 @@ const FileManager = () => {
 
 	return (
 		<motion.div initial={{ y: 0, opacity: 0.1 }} animate={{ y: 0, opacity: 1, transition: { delay: 0.2 } }}>
-			<Paper className="max-h-screen h-screen pt-44 px-10 overflow-hidden">
+			<div className="max-h-screen h-screen pt-44 px-0 md:px-10 overflow-hidden bg-grey-200">
 				<Toolbar className="flex justify-between">
 					<Buscador searchString={searchString} setSearchString={setSearchString}></Buscador>
 					<div className="flex">
@@ -46,7 +46,7 @@ const FileManager = () => {
 				<Paper className=" h-9/6 overflow-auto mx-12">
 					<FileList searchString={searchString}></FileList>
 				</Paper>
-			</Paper>
+			</div>
 		</motion.div>
 	);
 };

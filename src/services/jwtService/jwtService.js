@@ -19,10 +19,10 @@ class JwtService {
 	};
 
 	handleAuthentication = () => {
+
 		const token = this.getAccessToken();
 
 		if (this.isAuthTokenValid(token)) {
-			//Actualizo el token
 			store.dispatch(autoLogin());
 		} else {
 			// El token no es valido

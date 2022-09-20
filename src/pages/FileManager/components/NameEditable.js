@@ -45,11 +45,11 @@ const NameEditable = ({ id, name, userId, formOpen, handleOpenForm, handleCloseF
 	}
 
 	return (
-		<div className="flex items-center min-w-0">
+		<div className="flex justify-center w-full md:w-1/2">
 			{formOpen ? (
 				<ClickAwayListener onClickAway={handleCloseForm}>
-					<Paper>
-						<form className="flex w-full" onSubmit={handleSubmit(onSubmit)}>
+					<Paper className='flex flex-col justify-center w-full ml-5'>
+						<form className="flex flex-col justify-center w-full" onSubmit={handleSubmit(onSubmit)}>
 							<Controller
 								name="title"
 								control={control}
@@ -80,12 +80,12 @@ const NameEditable = ({ id, name, userId, formOpen, handleOpenForm, handleCloseF
 					</Paper>
 				</ClickAwayListener>
 			) : (
-				<div className="flex items-center justify-center">
+				<div className="flex w-full items-center justify-center text-left">
 					<Typography
-						className="text-14 sm:text-18 font-medium cursor-pointer"
+						className="text-18 sm:text-18 font-medium cursor-pointer w-full"
 						onClick={handleOpenForm}
 						color="inherit"
-						sx={{ marginBottom: 2, marginTop: 2, textSizeAdjust: 14, marginLeft: 2 }}
+						sx={{ marginBottom: 2, marginTop: 2, textSize: 18, marginLeft: 2 , fontWeight: '600', color: '#70707f'}}
 					>
 						{board.name}
 					</Typography>

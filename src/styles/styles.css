@@ -591,6 +591,10 @@ video {
   margin-top: 0.5rem;
 }
 
+.ml-5 {
+  margin-left: 0.5rem;
+}
+
 .inline {
   display: inline;
 }
@@ -623,20 +627,16 @@ video {
   width: 100%;
 }
 
-.w-md {
-  width: 64rem;
-}
-
 .min-w-40 {
   min-width: 4rem;
 }
 
-.min-w-0 {
-  min-width: 0;
+.max-w-400 {
+  max-width: 40rem;
 }
 
-.max-w-md {
-  max-width: 64rem;
+.max-w-320 {
+  max-width: 32rem;
 }
 
 .flex-auto {
@@ -667,6 +667,10 @@ video {
   align-items: center;
 }
 
+.justify-start {
+  justify-content: flex-start;
+}
+
 .justify-center {
   justify-content: center;
 }
@@ -675,8 +679,8 @@ video {
   justify-content: space-between;
 }
 
-.gap-6 {
-  gap: 0.6rem;
+.gap-9 {
+  gap: 0.9rem;
 }
 
 .overflow-auto {
@@ -687,16 +691,21 @@ video {
   overflow: hidden;
 }
 
-.rounded-20 {
-  border-radius: 2rem;
-}
-
 .border {
   border-width: 1px;
 }
 
+.bg-grey-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(238 238 238 / var(--tw-bg-opacity));
+}
+
 .p-16 {
   padding: 1.6rem;
+}
+
+.p-9 {
+  padding: 0.9rem;
 }
 
 .px-0 {
@@ -714,13 +723,16 @@ video {
   padding-bottom: 0.2rem;
 }
 
-.px-10 {
-  padding-left: 1.0rem;
-  padding-right: 1.0rem;
-}
-
 .pt-44 {
   padding-top: 4.4rem;
+}
+
+.pl-12 {
+  padding-left: 1.2rem;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .text-center {
@@ -739,8 +751,8 @@ video {
   font-size: 2rem;
 }
 
-.text-14 {
-  font-size: 1.4rem;
+.text-18 {
+  font-size: 1.8rem;
 }
 
 .font-semibold {
@@ -773,10 +785,9 @@ video {
   color: rgb(33 150 243 / var(--tw-text-opacity));
 }
 
-.shadow-0 {
-  --tw-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12);
-  --tw-shadow-colored: 0px 0px 0px 0px var(--tw-shadow-color), 0px 0px 0px 0px var(--tw-shadow-color), 0px 0px 0px 0px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+.text-grey-500 {
+  --tw-text-opacity: 1;
+  color: rgb(158 158 158 / var(--tw-text-opacity));
 }
 
 .filter {
@@ -825,6 +836,22 @@ video {
     display: flex;
   }
 
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+
+  .md\:max-w-3xl {
+    max-width: 128rem;
+  }
+
+  .md\:flex-row {
+    flex-direction: row;
+  }
+
+  .md\:justify-start {
+    justify-content: flex-start;
+  }
+
   .md\:p-24 {
     padding: 2.4rem;
   }
@@ -837,5 +864,10 @@ video {
   .md\:py-6 {
     padding-top: 0.6rem;
     padding-bottom: 0.6rem;
+  }
+
+  .md\:px-10 {
+    padding-left: 1.0rem;
+    padding-right: 1.0rem;
   }
 }

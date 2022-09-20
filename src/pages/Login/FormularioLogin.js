@@ -57,8 +57,8 @@ const FormularioLogin = () => {
 	}, [login.errors, setError]);
 
 	return (
-		<div className="flex items-center w-full">
-			<form className="flex gap-6 flex-col justify-center w-full" onSubmit={handleSubmit(onSubmit)}>
+		<div className="flex items-center w-full p-9">
+			<form className="flex gap-9 flex-col justify-center w-full" onSubmit={handleSubmit(onSubmit)}>
 				<Controller
 					name="username"
 					control={control}

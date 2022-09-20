@@ -62,13 +62,10 @@ const FileListItem = ({ item }) => {
 
 	return (
 		<Fragment>
-			<ListItem className="flex items-center justify-center" alignItems="flex-start">
-				<ListItemAvatar>
-					<Avatar>{item.name && item.name[0].toUpperCase()}</Avatar>
-				</ListItemAvatar>
-
-				<ListItemText
-					primary={
+			<ListItem className="flex w-full items-center justify-center" alignItems="flex-start">
+				<div className="flex items-center justify-center w-full">
+					<Avatar sx={{ background: '#1b1b66', alignContent: 'center', alignItems: 'center' }}>{item.name && item.name[0].toUpperCase()}</Avatar>
+					<div className="flex flex-col md:flex-row items-center justify-center w-full">
 						<BoardTitle
 							name={item.name}
 							id={item.id}
@@ -77,19 +74,17 @@ const FileListItem = ({ item }) => {
 							handleOpenForm={handleOpenForm}
 							handleCloseForm={handleCloseForm}
 						></BoardTitle>
-					}
-					secondary={
-						<Fragment>
-							{item.ext}
+						<div className="flex pl-12 w-full md:w-1/2 items-center justify-start md:justify-start">						
+							<span className=' text-grey-500 '>{item.ext}</span>
 							<Typography
 								component="span"
 								variant="body2"
-								sx={{ display: 'inline', marginRight: 1, marginLeft: 1 }}
+								sx={{ display: 'inline', marginRight: 1, marginLeft: 1, color: 'gray' }}
 								color="textPrimary"
 							>
 								|
 							</Typography>
-							{item.size === '' ? '-' : formatSize(item.size)}
+							<span className=' text-grey-500 '>{item.size === '' ? '-' : formatSize(item.size)}</span>
 							<Typography
 								component="span"
 								variant="body2"
@@ -112,9 +107,10 @@ const FileListItem = ({ item }) => {
 									undownloadable
 								</Typography>
 							)}
-						</Fragment>
-					}
-				/>
+							
+						</div>
+					</div>
+				</div>
 
 				<ListItemSecondaryAction>
 					<IconButton

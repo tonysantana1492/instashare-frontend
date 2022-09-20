@@ -3,9 +3,7 @@ import { baseUrl } from 'constants';
 import JwtService from 'services/jwtService';
 import { fetchWrapper } from '_helpers';
 
-export const submitRegister =
-	({ displayname, password, username }) =>
-	async dispatch => {
+export const submitRegister = ({ displayname, password, username }) => async dispatch => {
 		dispatch(setRegisterLoading(true));
 
 		let response;

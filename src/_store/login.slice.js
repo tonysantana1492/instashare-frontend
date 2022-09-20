@@ -4,8 +4,7 @@ import JwtService from 'services/jwtService';
 import { fetchWrapper } from '_helpers';
 // import { setUserData, userLoggedOut } from './users.slice';
 
-export const submitLogin =
-	({ username, password }) =>
+export const submitLogin = ({ username, password }) =>
 	async dispatch => {
 
 		dispatch(setLoginLoading(true));
@@ -48,7 +47,7 @@ export const autoLogin = () => async dispatch => {
 	}
 
 	if(response.user) {
-		JwtService.setSession(response.user);
+		JwtService.setSession(response);
 		dispatch(loginSuccess());
 		return;
 	}
