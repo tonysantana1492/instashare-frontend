@@ -26,7 +26,7 @@ class JwtService {
 			store.dispatch(autoLogin());
 		} else {
 			// El token no es valido
-			console.log('token no valido');
+			// console.log('token no valido');
 			this.setSession(null);
 		}
 	};

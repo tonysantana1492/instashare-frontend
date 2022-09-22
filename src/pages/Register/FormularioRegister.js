@@ -14,17 +14,17 @@ import { submitRegister } from '_store/register.slice';
 const schema = yup.object().shape({
 	displayname: yup
 		.string()
-		.required('You must enter display name')
+		.required('You must enter display name.')
 		.min(4, 'Should be 4 chars minimum.')
 		.max(40, 'Should be 40 chars maximum.'),
-	username: yup.string().email('You must enter a valid email').required('You must enter a email'),
+	username: yup.string().email('You must enter a valid email.').required('You must enter a email.'),
 	password: yup
 		.string()
 		.required('Please enter your password.')
-		.matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, 'Password too weak')
+		.matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, 'Password too weak.')
 		.min(8, 'Should be 4 chars minimum.')
 		.max(20, 'Should be 40 chars maximum.'),
-	passwordConfirm: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match')
+	passwordConfirm: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match.')
 });
 
 const defaultValues = {
@@ -146,7 +146,7 @@ const JWTRegister = () => {
 							{...field}
 							autoComplete = 'new-password'
 							type="password"
-							label="Confirmar"
+							label="Confirm"
 							error={!!errors.passwordConfirm}
 							helperText={errors?.passwordConfirm?.message}
 							InputProps={{
