@@ -13,7 +13,7 @@ const FileList = ({searchString}) => {
 	return (
 		<Fragment>
 			{filteredFiles.length === 0 ? (
-				<Typography className=' mt-12 flex items-center justify-center' sx={{ fontWeight: '600' }} >No Items Founds</Typography>
+				<Typography component="span" className=' mt-12 flex items-center justify-center' sx={{ fontWeight: '600', padding: '50px' }} >No Items Founds</Typography>
 			) : (
 				<List className="w-full">
 					{filteredFiles.map(item => {

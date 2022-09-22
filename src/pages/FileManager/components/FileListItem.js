@@ -84,7 +84,7 @@ const FileListItem = ({ item }) => {
 							>
 								|
 							</Typography>
-							<span className=' text-grey-500 '>{item.size === '' ? '-' : formatSize(item.size)}</span>
+							<span className=' text-black font-500 '>{item.size === '' ? '-' : formatSize(item.size)}</span>
 							<Typography
 								component="span"
 								variant="body2"
@@ -97,13 +97,14 @@ const FileListItem = ({ item }) => {
 								<Typography
 									className="font-normal hover:underline cursor-pointer"
 									component="span"
-									sx={{ color: 'green' }}
+									sx={{ color: 'green', backgroundColor: '#c2f9db', paddingLeft: '6px', paddingRight: '6px', borderRadius: '10rem' }}
 									onClick={() => dispatch(downloadFile(item.id, item.name))}
 								>
 									downloadable
 								</Typography>
 							) : (
-								<Typography component="span" sx={{ color: 'red' }}>
+								<Typography component="span" sx={{ color: 'red', backgroundColor: '#efe5e5', paddingLeft: '6px', paddingRight: '6px', borderRadius: '10rem' }}
+								>
 									undownloadable
 								</Typography>
 							)}

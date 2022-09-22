@@ -5,27 +5,37 @@ import userEvent from '@testing-library/user-event';
 import LoginPage from './Login';
 import { renderWithProviders } from '_helpers/test-utils';
 import '@testing-library/jest-dom';
+import FormularioLogin from './FormularioLogin';
+import { TOKEN_ENV } from 'constants';
 
-describe('<Login />', () => {
+jest.mock('pages/Register/Register', () => {
+	return {
+		RegisterPage: () => <span>register page</span>
+	};
+});
+
+describe('<LoginPage />', () => {
+	const mockLogin = jest.fn();
+	const formData = {
+		email: 'real@test.com',
+		password: 'TonyMio2590'
+	};
+
 	beforeEach(async () => {
 		await act(async () =>
 			renderWithProviders(
 				<Router>
-					<LoginPage />
+					<LoginPage onSubmit={mockLogin(formData.email, formData.password)} />
 				</Router>
 			)
 		);
 	});
 
-	it('should render OK', async () => {
-		/*const store = setupStore();		
-    await act( async () => render (<Provider store={store}><LoginPage /></Provider>, {wrapper: BrowserRouter}));
-    */
-
+	test('should render OK', async () => {
 		expect(screen.getByText(/Don't have an account?/i)).toBeInTheDocument();
 	});
 
-	it('displays email validation errors', async () => {
+	test('displays email validation errors', async () => {
 		const email = screen.getByLabelText(/email/i);
 		await act(() => {
 			userEvent.type(email, 'this@wont');
@@ -37,7 +47,7 @@ describe('<Login />', () => {
 		expect(screen.queryByText(/You must enter a email/i)).toBeInTheDocument();
 	});
 
-	it('displays password validation errors', async () => {
+	test('displays password validation errors', async () => {
 		const password = screen.getByLabelText(/Password/i);
 		await act(() => {
 			userEvent.type(password, 'fff');
@@ -50,12 +60,12 @@ describe('<Login />', () => {
 		expect(screen.queryByText(/Please enter your password./i)).toBeInTheDocument();
 	});
 
-	it('button disabled', async () => {
+	test('button disabled', async () => {
 		const buttonSubmit = screen.getByRole('button');
 		expect(buttonSubmit).toHaveAttribute('disabled');
 	});
 
-	it('form ok, button login enable?, sending form?', async () => {
+	test('form ok, button login enable?', async () => {
 		const buttonSubmit = screen.getByRole('button');
 		const email = screen.getByLabelText(/email/i);
 		const password = screen.getByLabelText(/Password/i);
@@ -68,14 +78,31 @@ describe('<Login />', () => {
 		});
 		expect(buttonSubmit).not.toHaveAttribute('disabled');
 
-		await act(() => {
-			userEvent.click(buttonSubmit);
-		});
+	});
+});
 
-		expect(screen.queryByText(/Sending.../i)).toBeInTheDocument();
+
+describe('<LoginPage/> with call api mock ', () => {
+	beforeEach(async () => {
+		/*originalFetch = global.fetch;
+		global.fetch = jest.fn(() =>
+			Promise.resolve({
+				text: () =>
+					Promise.resolve(JSON.stringify({ error: [{ type: 'password', message: 'Invalid credentials' }] })),
+				ok: true
+			})
+		);*/
+
+		await act(async () =>
+			renderWithProviders(
+				<Router>
+					<LoginPage />
+				</Router>
+			)
+		);
 	});
 
-	it('submits form and calls api', async () => {
+	test('submits a form with invalid credentials', async () => {
 		const buttonSubmit = screen.getByRole('button');
 		const email = screen.getByLabelText(/email/i);
 		const password = screen.getByLabelText(/Password/i);
@@ -85,10 +112,15 @@ describe('<Login />', () => {
 		};
 
 		window.fetch = jest.fn();
-		window.fetch.mockResolvedValueOnce({
-			json: async () => { error: [{ type: 'password', message: 'Invalid credentials' }] }
-		});
-		
+
+		fetch.mockResolvedValueOnce(
+			Promise.resolve({
+				text: () =>
+					Promise.resolve(JSON.stringify({ error: [{ type: 'password', message: 'Invalid credentials' }] })),
+				ok: true
+			})
+		);
+
 		await act(() => {
 			userEvent.type(email, formData.email);
 		});
@@ -100,103 +132,50 @@ describe('<Login />', () => {
 
 		await act(() => {
 			userEvent.click(buttonSubmit);
-		}); 
+		});
 
 		expect(screen.queryByText(/Invalid credentials/i)).toBeInTheDocument();
-		// expect(errorMessage).toHaveTextContent(/mutation-error/i);
-		// expect(localStorage.setItem).toHaveBeenCalledWith("nuber-token", "XXX");
 	});
 
-	/*it('change to register page', async () => {
+	test('submits a form with valid credentials', async () => {
+		const buttonSubmit = screen.getByRole('button');
+		const email = screen.getByLabelText(/email/i);
+		const password = screen.getByLabelText(/Password/i);
+		const formData = {
+			email: 'real@test.com',
+			password: 'TonyMio2590'
+		};
 
-		const register = screen.getByText(/Register/i);
+		window.fetch = jest.fn();
+
+		fetch.mockResolvedValueOnce(
+			Promise.resolve({
+				text: () =>
+					Promise.resolve(
+						JSON.stringify({
+							token: 'XXX',
+							user: [{ username: 'someusername', displayname: 'somedisplayname' }]
+						})
+					),
+				ok: true
+			})
+		);
+
+		jest.spyOn(Storage.prototype, 'setItem');
 
 		await act(() => {
-			userEvent.click(register);
+			userEvent.type(email, formData.email);
+		});
+		await act(() => {
+			userEvent.type(password, formData.password);
 		});
 
-    console.log(screen);
-		
-    expect(screen.queryByText(/Already have an account?/i)).toBeInTheDocument();
-	});*/
+		expect(buttonSubmit).not.toHaveAttribute('disabled');
+
+		await act(() => {
+			userEvent.click(buttonSubmit);
+		});		
+
+		expect(localStorage.setItem).toHaveBeenCalledWith(TOKEN_ENV, 'XXX');
+	});
 });
-
-/*describe('<Login />', () => {
-	
-	beforeEach(async () => {
-		await waitFor(async () => {
-			renderWithProviders(
-				<Router>
-					<LoginPage />
-				</Router>
-			);
-		});
-	});
-
-	it('should render OK', async () => {
-		await waitFor(() => {     
-      expect(screen.getByText(/insta/i)).toBeInTheDocument();
-		});
-	});
-
-	it("displays email validation errors", async () => {
-    const { getByPlaceholderText, getByRole } = renderResult;
-    const email = getByPlaceholderText(/email/i);
-    await waitFor(() => {
-      userEvent.type(email, "this@wont");
-    });
-    let errorMessage = getByRole("alert");
-    expect(errorMessage).toHaveTextContent(/please enter a valid email/i);
-    await waitFor(() => {
-      userEvent.clear(email);
-    });
-    errorMessage = getByRole("alert");
-    expect(errorMessage).toHaveTextContent(/email is required/i);
-  });
-  it("display password required errors", async () => {
-    const { getByPlaceholderText, getByRole } = renderResult;
-    const email = getByPlaceholderText(/email/i);
-    const submitBtn = getByRole("button");
-    await waitFor(() => {
-      userEvent.type(email, "this@wont.com");
-      userEvent.click(submitBtn);
-    });
-    const errorMessage = getByRole("alert");
-    expect(errorMessage).toHaveTextContent(/password is required/i);
-  });
-  it("submits form and calls mutation", async () => {
-    const { getByPlaceholderText, getByRole } = renderResult;
-    const email = getByPlaceholderText(/email/i);
-    const password = getByPlaceholderText(/password/i);
-    const submitBtn = getByRole("button");
-    const formData = {
-      email: "real@test.com",
-      password: "123",
-    };
-    const mockedMutationResponse = jest.fn().mockResolvedValue({
-      data: {
-        login: {
-          ok: true,
-          token: "XXX",
-          error: "mutation-error",
-        },
-      },
-    });
-    mockedClient.setRequestHandler(LOGIN_MUTATION, mockedMutationResponse);
-    jest.spyOn(Storage.prototype, "setItem");
-    await waitFor(() => {
-      userEvent.type(email, formData.email);
-      userEvent.type(password, formData.password);
-      userEvent.click(submitBtn);
-    });
-    expect(mockedMutationResponse).toHaveBeenCalledTimes(1);
-    expect(mockedMutationResponse).toHaveBeenCalledWith({
-      loginInput: {
-        email: formData.email,
-        password: formData.password,
-      },
-    });
-    const errorMessage = getByRole("alert");
-    expect(errorMessage).toHaveTextContent(/mutation-error/i);
-    expect(localStorage.setItem).toHaveBeenCalledWith("nuber-token", "XXX");
-  });*/

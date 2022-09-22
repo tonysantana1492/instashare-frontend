@@ -10,7 +10,7 @@ const Nav = () => {
 	if (!isLogin) return null;
 
 	return (
-		<AppBar sx={{backgroundColor: 'white'}} position="fixed">
+		<AppBar variant='outlined' sx={{backgroundColor: 'white'}} position="fixed">
 			<Toolbar className="flex w-full justify-between place-items-center">
 				<Logo></Logo>
 				<UserMenu></UserMenu>

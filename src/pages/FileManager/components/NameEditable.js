@@ -48,7 +48,7 @@ const NameEditable = ({ id, name, userId, formOpen, handleOpenForm, handleCloseF
 		<div className="flex justify-center w-full md:w-1/2">
 			{formOpen ? (
 				<ClickAwayListener onClickAway={handleCloseForm}>
-					<Paper className='flex flex-col justify-center w-full ml-5'>
+					<Paper variant='hiden' className='flex flex-col justify-center w-full ml-5'>
 						<form className="flex flex-col justify-center w-full" onSubmit={handleSubmit(onSubmit)}>
 							<Controller
 								name="title"
@@ -60,7 +60,7 @@ const NameEditable = ({ id, name, userId, formOpen, handleOpenForm, handleCloseF
 										margin="none"
 										autoFocus
 										hiddenLabel
-										sx={{ margin: 0, width: 'auto' }}
+										sx={{ width: 'auto' }}
 										InputProps={{
 											endAdornment: (
 												<InputAdornment position="end">

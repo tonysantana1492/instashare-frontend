@@ -16,7 +16,7 @@ const LoginPage = () => {
 					animate={{ opacity: 1, scale: 1 }}
 					className="flex w-full max-w-400 md:max-w-3xl overflow-hidden items-center justify-center"
 				>
-					<Card variant="outlined" className="flex flex-col w-full max-w-320 items-center justify-center">
+					<Card variant="hiden" className="flex flex-col w-full max-w-320 items-center justify-center">
 						<CardContent className="flex flex-col items-center justify-center w-full max-w-320">
 							<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.2 } }}>
 								<div className="flex items-center mb-10 mt-17">

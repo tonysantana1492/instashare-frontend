@@ -9,14 +9,14 @@ import Loading from 'pages/Loading/Loading';
 const Register = () => {
 	
 	return (
-		<div className="flex h-screen items-center justify-center p-16 md:p-24 bg-grey-200">
+		<div className="flex h-screen items-center justify-center p-16 md:p-24">
 			
 				<motion.div
 					initial={{ opacity: 0, scale: 0.6 }}
 					animate={{ opacity: 1, scale: 1 }}
 					className="flex w-full max-w-400 md:max-w-3xl overflow-hidden items-center justify-center"
 				>
-					<Card variant="outlined" className="flex flex-col w-full max-w-320 items-center justify-center">
+					<Card variant="hiden" className="flex flex-col w-full max-w-320 items-center justify-center">
 						<CardContent className="flex flex-col items-center justify-center w-full max-w-320">
 							<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.2 } }}>
 								<div className="flex items-center mb-10">

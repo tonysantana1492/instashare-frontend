@@ -36,7 +36,7 @@ export const uploadFile = data => async dispatch => {
 
 export const downloadFile = (id, name) => async dispatch => {
 
-	dispatch(setIsloading(true));
+	// dispatch(setIsloading(true));
 
 	try {
 		const token = localStorage.getItem(TOKEN_ENV);
@@ -56,7 +56,7 @@ export const downloadFile = (id, name) => async dispatch => {
 	} catch (error) {
 		dispatch(fileOperationError(error));
 	}
-	dispatch(setIsloading(false));
+	// dispatch(setIsloading(false));
 };
 
 export const editNameFile = data => async dispatch => {
