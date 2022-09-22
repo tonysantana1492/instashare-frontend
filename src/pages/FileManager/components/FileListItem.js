@@ -124,6 +124,30 @@ const FileListItem = ({ item }) => {
 									undownloadable
 								</Typography>
 							)}
+							{alloEdit && (
+								<>
+									<Typography
+										component="span"
+										variant="body2"
+										sx={{ display: 'inline', marginRight: 1, marginLeft: 1 }}
+										color="textPrimary"
+									>
+										|
+									</Typography>
+									<Typography
+									component="span"
+									sx={{
+										color: 'black',
+										backgroundColor: '#fbed8d',
+										paddingLeft: '6px',
+										paddingRight: '6px',
+										borderRadius: '10rem'
+									}}
+								>
+									owner
+								</Typography>
+								</>
+							)}
 						</div>
 					</div>
 				</div>

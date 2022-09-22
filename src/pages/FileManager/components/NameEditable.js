@@ -11,7 +11,7 @@ import { editNameFile } from '_store';
  * Form Validation Schema
  */
 const schema = yup.object().shape({
-	title: yup.string().required('You must enter a name')
+	title: yup.string().required('You must enter a name').max(40, 'Should be 40 chars maximum.')
 });
 
 const NameEditable = ({ id, name, userId, formOpen, handleOpenForm, handleCloseForm }) => {
@@ -80,12 +80,12 @@ const NameEditable = ({ id, name, userId, formOpen, handleOpenForm, handleCloseF
 					</Paper>
 				</ClickAwayListener>
 			) : (
-				<div className="flex w-full items-center justify-center text-left">
+				<div className="flex max-w-full w-full items-center justify-center text-left">
 					<Typography
-						className="text-18 sm:text-18 font-medium cursor-pointer w-full"
+						className="text-18 sm:text-18 font-medium cursor-pointer max-w-full w-full"
 						onClick={handleOpenForm}
 						color="inherit"
-						sx={{ marginBottom: 2, marginTop: 2, textSize: 18, marginLeft: 2 , fontWeight: '600', color: '#70707f'}}
+						sx={{ marginBottom: 2, marginTop: 2, textSize: 18, marginLeft: 2 , fontWeight: '600', color: '#70707f', overflowWrap: 'anywhere'}}
 					>
 						{board.name}
 					</Typography>
