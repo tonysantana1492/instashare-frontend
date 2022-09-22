@@ -1,22 +1,20 @@
 import { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-const { Edit, MoreVert, Download } = require('@mui/icons-material');
-const {
+import { Edit, MoreVert, Download } from '@mui/icons-material';
+import {
 	IconButton,
 	MenuItem,
 	ListItemIcon,
 	ListItemText,
 	Menu,
 	ListItem,
-	ListItemAvatar,
 	Avatar,
 	Typography,
 	Divider,
 	ListItemSecondaryAction
-} = require('@mui/material');
-const { downloadFile } = require('_store');
-const { default: BoardTitle } = require('./NameEditable');
+} from '@mui/material';
+import { downloadFile } from '_store';
+import BoardTitle from './NameEditable';
 
 const FileListItem = ({ item }) => {
 	const dispatch = useDispatch();
@@ -64,7 +62,9 @@ const FileListItem = ({ item }) => {
 		<Fragment>
 			<ListItem className="flex w-full items-center justify-center" alignItems="flex-start">
 				<div className="flex items-center justify-center w-full">
-					<Avatar sx={{ background: '#1b1b66', alignContent: 'center', alignItems: 'center' }}>{item.name && item.name[0].toUpperCase()}</Avatar>
+					<Avatar sx={{ background: '#1b1b66', alignContent: 'center', alignItems: 'center' }}>
+						{item.name && item.name[0].toUpperCase()}
+					</Avatar>
 					<div className="flex flex-col md:flex-row items-center justify-center w-full">
 						<BoardTitle
 							name={item.name}
@@ -74,8 +74,8 @@ const FileListItem = ({ item }) => {
 							handleOpenForm={handleOpenForm}
 							handleCloseForm={handleCloseForm}
 						></BoardTitle>
-						<div className="flex pl-12 w-full md:w-1/2 items-center justify-start md:justify-start">						
-							<span className=' text-grey-500 '>{item.ext}</span>
+						<div className="flex pl-12 w-full md:w-1/2 items-center justify-start md:justify-start">
+							<span className=" text-grey-500 ">{item.ext}</span>
 							<Typography
 								component="span"
 								variant="body2"
@@ -84,7 +84,9 @@ const FileListItem = ({ item }) => {
 							>
 								|
 							</Typography>
-							<span className=' text-black font-500 '>{item.size === '' ? '-' : formatSize(item.size)}</span>
+							<span className=" text-black font-500 ">
+								{item.size === '' ? '-' : formatSize(item.size)}
+							</span>
 							<Typography
 								component="span"
 								variant="body2"
@@ -97,18 +99,31 @@ const FileListItem = ({ item }) => {
 								<Typography
 									className="font-normal hover:underline cursor-pointer"
 									component="span"
-									sx={{ color: 'green', backgroundColor: '#c2f9db', paddingLeft: '6px', paddingRight: '6px', borderRadius: '10rem' }}
+									sx={{
+										color: 'green',
+										backgroundColor: '#c2f9db',
+										paddingLeft: '6px',
+										paddingRight: '6px',
+										borderRadius: '10rem'
+									}}
 									onClick={() => dispatch(downloadFile(item.id, item.name))}
 								>
 									downloadable
 								</Typography>
 							) : (
-								<Typography component="span" sx={{ color: 'red', backgroundColor: '#efe5e5', paddingLeft: '6px', paddingRight: '6px', borderRadius: '10rem' }}
+								<Typography
+									component="span"
+									sx={{
+										color: 'red',
+										backgroundColor: '#efe5e5',
+										paddingLeft: '6px',
+										paddingRight: '6px',
+										borderRadius: '10rem'
+									}}
 								>
 									undownloadable
 								</Typography>
 							)}
-							
 						</div>
 					</div>
 				</div>

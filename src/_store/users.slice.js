@@ -1,14 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { TOKEN_ENV } from 'constants';
-import JwtService from 'services/jwtService';
 
-/*export const setUserData = data => async dispatch => {	
-	dispatch(setUser(data));
-};
-
-export const setUserLoggedOut = data => async dispatch => {	
-    dispatch(userLoggedOut());
-};*/
 
 const initialState = {
     isLogin: Boolean(localStorage.getItem(TOKEN_ENV)),

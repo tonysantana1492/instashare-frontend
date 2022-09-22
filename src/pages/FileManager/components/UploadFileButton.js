@@ -1,6 +1,6 @@
-import { Check, Save, UploadFile } from '@mui/icons-material';
-import { CircularProgress, Fab, IconButton } from '@mui/material';
-import { useEffect, useRef, useState } from 'react';
+import { Check, UploadFile } from '@mui/icons-material';
+import { CircularProgress, IconButton } from '@mui/material';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { uploadFile } from '_store';
 
@@ -11,34 +11,7 @@ const UploadFileButton = () => {
 	const dispatch = useDispatch();
 
 	const handleButtonClick = async e => {
-		/*function readFileAsync() {
-				return new Promise((resolve, reject) => {
-					const file = e.target.files[0];
-					if (!file) {
-						return;
-					}
-					
-					const reader = new FileReader();
-
-					reader.onload = () => {
-						console.log(file);
-						resolve({
-							// url: `data:${file.type};base64,${btoa(reader.result)}`,
-							name: file.name,
-							type: file.type,
-							size: file.size
-						});
-					};
-
-					reader.onerror = reject;
-
-					reader.readAsBinaryString(file);
-				});
-			}
-
-			const newFile = await readFileAsync();
-			*/
-
+		
 		const file = e.target.files[0];
 
 		if (!file) {
@@ -49,12 +22,12 @@ const UploadFileButton = () => {
 		formData.append('file', file);
 
 		setLoading(true);
+		setSuccess(false);
 
 		try {
 			await dispatch(uploadFile(formData));
 			setSuccess(true);
 		} catch (e) {
-			console.log('errr');
 			setSuccess(false);
 		}
 		
@@ -65,11 +38,12 @@ const UploadFileButton = () => {
 		<div className="flex items-center">
 			<input accept="*" className=" hidden" id="icon-button-file" type="file" onChange={handleButtonClick} />
 			<label className="m-1 relative" htmlFor="icon-button-file">
-				<IconButton aria-label="upload picture" component="span">
+				<IconButton data-testid='iconbutton-id' aria-label="upload picture" component="span">
 					{success ? <Check /> : <UploadFile />}
 				</IconButton>
 				{loading && (
 					<CircularProgress
+						data-testid='circularprogress-id'
 						size={40}
 						sx={{ color: 'teal', position: 'absolute', top: 0, left: 0, zIndex: 1 }}
 					/>

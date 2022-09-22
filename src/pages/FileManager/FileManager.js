@@ -2,7 +2,7 @@ import { Refresh } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { IconButton, Paper, Toolbar } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFiles } from '_store/files.slice';
+import { getFiles, selectFiles } from '_store/files.slice';
 import { useEffect, useState } from 'react';
 import Buscador from 'pages/FileManager/components/Buscador';
 import Loading from 'pages/Loading/Loading';
@@ -18,9 +18,10 @@ const FileManager = () => {
 		return state.filesReducer.isLoading;
 	});
 
-	// const errorsFile = useSelector(state => {
-	// return state.filesReducer.errors;
-	// });
+	const files = useSelector(selectFiles);
+
+	const filteredFiles = files.filter(s => s.name.toLowerCase().startsWith(searchString.toLowerCase()));
+
 
 	useEffect(() => {
 		dispatch(getFiles());
@@ -44,7 +45,7 @@ const FileManager = () => {
 				</Toolbar>
 
 				<Paper variant='outlined' className="h-9/6 overflow-auto mx-14">
-					<FileList searchString={searchString}></FileList>
+					<FileList filteredFiles={filteredFiles}></FileList>
 				</Paper>
 			</div>
 		</motion.div>

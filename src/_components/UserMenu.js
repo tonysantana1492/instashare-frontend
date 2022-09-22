@@ -1,11 +1,11 @@
 import { ExitToApp } from '@mui/icons-material';
 import { Avatar, Button, Divider, ListItemIcon, ListItemText, MenuItem, Popover, Typography } from '@mui/material';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import JwtService from 'services/jwtService';
 
 const UserMenu = () => {
-	const dispatch = useDispatch();
+	
 	const user = useSelector(state => state.userReducer.user);
 
 	const [userMenu, setUserMenu] = useState(null);

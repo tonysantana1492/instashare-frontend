@@ -28,7 +28,7 @@ const FormularioLogin = () => {
 	const login = useSelector(state => state.loginReducer);
 	const isLoading = login.isLoading;
 
-	const { control, formState, handleSubmit, setValue, reset, trigger, setError } = useForm({
+	const { control, formState, handleSubmit, setError } = useForm({
 		mode: 'onChange',
 		defaultValues,
 		resolver: yupResolver(schema)

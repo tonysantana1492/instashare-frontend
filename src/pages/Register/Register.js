@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@mui/material';
 import JWTRegister from './FormularioRegister';
 import Logo from '_components/Logo';
-import { useSelector } from 'react-redux';
-import Loading from 'pages/Loading/Loading';
 
 const Register = () => {
 	

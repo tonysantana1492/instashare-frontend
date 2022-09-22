@@ -1,15 +1,9 @@
 import { List, Typography } from '@mui/material';
 import { Fragment } from 'react';
-import { useSelector } from 'react-redux';
-import { selectFiles } from '_store/files.slice';
 import FileListItem from './components/FileListItem';
 
-const FileList = ({searchString}) => {
-	const files = useSelector(selectFiles);
-
-	const filteredFiles = files.filter(s => s.name.startsWith(searchString));
-
-
+const FileList = ({filteredFiles}) => {
+	
 	return (
 		<Fragment>
 			{filteredFiles.length === 0 ? (

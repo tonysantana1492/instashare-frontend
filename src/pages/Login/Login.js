@@ -1,7 +1,5 @@
 import { Card, CardContent } from '@mui/material';
 import { motion } from 'framer-motion';
-import Loading from 'pages/Loading/Loading';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Logo from '_components/Logo';
 import FormularioLogin from './FormularioLogin';
