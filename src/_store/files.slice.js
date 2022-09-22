@@ -16,7 +16,7 @@ export const getFiles = () => async dispatch => {
 };
 
 export const uploadFile = data => async dispatch => {
-	dispatch(setIsloading(true));
+	
 	try {
 		const token = localStorage.getItem(TOKEN_ENV);
 
@@ -25,18 +25,15 @@ export const uploadFile = data => async dispatch => {
 				Authorization: 'Bearer ' + token
 			}
 		});
-
-		// const response = await fetchWrapper.post(`${baseUrl}/filemanager/action/upload`, data);
+		
 		dispatch(setAllFiles(response.data));
 	} catch (error) {
 		dispatch(fileOperationError(error));
 	}
-	dispatch(setIsloading(false));
+	
 };
 
 export const downloadFile = (id, name) => async dispatch => {
-
-	// dispatch(setIsloading(true));
 
 	try {
 		const token = localStorage.getItem(TOKEN_ENV);
@@ -56,7 +53,7 @@ export const downloadFile = (id, name) => async dispatch => {
 	} catch (error) {
 		dispatch(fileOperationError(error));
 	}
-	// dispatch(setIsloading(false));
+	
 };
 
 export const editNameFile = data => async dispatch => {
