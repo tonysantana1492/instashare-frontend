@@ -84,17 +84,10 @@ const FileListItem = ({ item }) => {
 							>
 								|
 							</Typography>
-							<span className=" text-black font-500 ">
+							<span className=" text-grey-500  ">
 								{item.size === '' ? '-' : formatSize(item.size)}
 							</span>
-							<Typography
-								component="span"
-								variant="body2"
-								sx={{ display: 'inline', marginRight: 1, marginLeft: 1 }}
-								color="textPrimary"
-							>
-								|
-							</Typography>
+							
 							{item.status ? (
 								<Typography
 									className="font-normal hover:underline cursor-pointer"
@@ -104,6 +97,8 @@ const FileListItem = ({ item }) => {
 										backgroundColor: '#c2f9db',
 										paddingLeft: '6px',
 										paddingRight: '6px',
+										marginLeft: '12px',
+										marginRight: '8px',
 										borderRadius: '10rem'
 									}}
 									onClick={() => dispatch(downloadFile(item.id, item.name))}
@@ -118,6 +113,8 @@ const FileListItem = ({ item }) => {
 										backgroundColor: '#efe5e5',
 										paddingLeft: '6px',
 										paddingRight: '6px',
+										marginLeft: '12px',
+										marginRight: '8px',
 										borderRadius: '10rem'
 									}}
 								>
@@ -125,15 +122,7 @@ const FileListItem = ({ item }) => {
 								</Typography>
 							)}
 							{alloEdit && (
-								<>
-									<Typography
-										component="span"
-										variant="body2"
-										sx={{ display: 'inline', marginRight: 1, marginLeft: 1 }}
-										color="textPrimary"
-									>
-										|
-									</Typography>
+								
 									<Typography
 										component="span"
 										sx={{
@@ -146,7 +135,7 @@ const FileListItem = ({ item }) => {
 									>
 										owner
 									</Typography>
-								</>
+								
 							)}
 						</div>
 					</div>
