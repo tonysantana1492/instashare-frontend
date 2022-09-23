@@ -181,62 +181,6 @@ const FileListItem = ({ item }) => {
 			<Divider variant="inset" component="li" />
 		</Fragment>
 	);
-
-	/*return (
-		<TableRow
-			hover
-			onClick={() => dispatch(setSelectedItem(item.id))}
-			selected={item.id === selectedItemId}
-			className="cursor-pointer"
-			sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-		>
-			<TableCell className="font-medium">
-				<BoardTitle
-					name={item.name}
-					id={item.id}
-					userId={item.userId}
-					formOpen={formOpen}
-					handleOpenForm={handleOpenForm}
-					handleCloseForm={handleCloseForm}
-				></BoardTitle>
-			</TableCell>
-			<TableCell className="hidden sm:table-cell">{item.type}</TableCell>
-			<TableCell className="hidden sm:table-cell">{item.userId === userLogin.id ? 'SI' : 'NO'}</TableCell>
-			<TableCell className="text-center hidden sm:table-cell">
-				{item.size === '' ? '-' : formatSize(item.size)}
-			</TableCell>
-			<TableCell className="hidden sm:table-cell">{item.updateAt}</TableCell>
-
-			<TableCell>				
-
-				<div className="">
-					<IconButton
-						aria-owns={anchorEl ? 'actions-menu' : null}
-						aria-haspopup="true"
-						onClick={handleMenuClick}
-						variant="outlined"
-						size="small"
-					>
-						<MoreVert className="text-20"></MoreVert>
-					</IconButton>
-					<Menu id="actions-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
-						<MenuItem onClick={handleOpenForm}>
-							<ListItemIcon className="min-w-40">
-								<Edit></Edit>
-							</ListItemIcon>
-							<ListItemText primary="Rename List" />
-						</MenuItem>
-						<MenuItem onClick={() => dispatch(downloadFile(item.id, item.name))}>
-							<ListItemIcon className="min-w-40">
-								<Download></Download>
-							</ListItemIcon>
-							<ListItemText primary="Download" />
-						</MenuItem>
-					</Menu>
-				</div>
-			</TableCell>
-		</TableRow>
-	);*/
 };
 
 export default FileListItem;
