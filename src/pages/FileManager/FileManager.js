@@ -33,8 +33,8 @@ const FileManager = () => {
 
 	return (
 		<motion.div initial={{ y: 0, opacity: 0.1 }} animate={{ y: 0, opacity: 1, transition: { delay: 0.2 } }}>
-			<div className="max-h-screen h-screen pt-44 overflow-hidden bg-grey-200">
-				<Toolbar className="flex justify-between">
+			<div className="max-h-screen h-screen pt-44 overflow-hidden bg-grey-200 px-14">
+				<div className="flex justify-between pb-3">
 					<Buscador searchString={searchString} setSearchString={setSearchString}></Buscador>
 					<div className="flex">
 						<CircularIntegration></CircularIntegration>
@@ -42,9 +42,9 @@ const FileManager = () => {
 							<Refresh />
 						</IconButton>
 					</div>
-				</Toolbar>
+				</div>
 
-				<Paper variant='outlined' className="h-9/6 overflow-auto mx-14">
+				<Paper variant='outlined' className="h-9/6 overflow-auto">
 					<FileList filteredFiles={filteredFiles}></FileList>
 				</Paper>
 			</div>
