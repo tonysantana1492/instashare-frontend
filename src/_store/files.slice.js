@@ -35,6 +35,7 @@ export const uploadFile = data => async dispatch => {
 
 export const downloadFile = (id, name) => async dispatch => {
 
+	dispatch(setIsloading(true));
 	try {
 		const token = localStorage.getItem(TOKEN_ENV);
 		const response = await fetch(`${baseUrl}/filemanager/download/${id}`, {
@@ -50,9 +51,12 @@ export const downloadFile = (id, name) => async dispatch => {
 		link.download = `${name}.zip`;
 		document.body.appendChild(link);
 		link.click();
+		
 	} catch (error) {
 		dispatch(fileOperationError(error));
 	}
+
+	dispatch(setIsloading(false));
 	
 };
 
