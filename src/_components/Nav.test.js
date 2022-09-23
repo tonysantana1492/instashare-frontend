@@ -5,7 +5,7 @@ import { setUser } from '_store';
 import Nav from './Nav';
 
 describe('<Nav />', () => {
-	it('renders Nav', async () => {
+	test('renders Nav', async () => {
 		const store = setupStore();
 		const payload = { token: 'dfdfdf', user: { username: 'dsdsds', displayname: 'dssds' } };
         const { getByText, debug } = renderWithProviders(<Nav />, { store });

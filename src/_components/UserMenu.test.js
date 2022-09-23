@@ -5,7 +5,7 @@ import { setUser } from '_store';
 import UserMenu from './UserMenu';
 
 describe('<UserMenu />', () => {
-	it('renders UserMenu', async () => {
+	test('renders UserMenu', async () => {
 		const store = setupStore();
 		const payload = { token: 'sometoken', user: { username: 'some.user', displayname: 'Tony' } };
         const { getByText, debug } = renderWithProviders(<UserMenu />, { store });
@@ -17,7 +17,7 @@ describe('<UserMenu />', () => {
 		getByText('T');
 	});
 
-	it('show menu of UserMenu', async () => {
+	test('show menu of UserMenu', async () => {
 		const store = setupStore();
 		const payload = { token: 'sometoken', user: { username: 'some.user', displayname: 'Tony' } };
         const { getByText, debug, getByTestId } = renderWithProviders(<UserMenu />, { store });

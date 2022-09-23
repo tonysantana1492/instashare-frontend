@@ -16,12 +16,12 @@ jest.mock('../routers/logged-in-router', () => {
 });
 
 describe('<App />', () => {
-	it('renders LoggedOutRouter', () => {
+	test('renders LoggedOutRouter', () => {
 		const { getByText } = renderWithProviders(<App />);
 		getByText('logged-out');
 	});
 
-	it('renders LoggedInRouter', async () => {
+	test('renders LoggedInRouter', async () => {
 		const store = setupStore();
 		const payload = { token: 'sometoken', user: {} };
     	store.dispatch(setUser(payload));
