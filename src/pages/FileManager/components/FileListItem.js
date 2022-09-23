@@ -135,17 +135,17 @@ const FileListItem = ({ item }) => {
 										|
 									</Typography>
 									<Typography
-									component="span"
-									sx={{
-										color: 'black',
-										backgroundColor: '#fbed8d',
-										paddingLeft: '6px',
-										paddingRight: '6px',
-										borderRadius: '10rem'
-									}}
-								>
-									owner
-								</Typography>
+										component="span"
+										sx={{
+											color: 'black',
+											backgroundColor: '#fbed8d',
+											paddingLeft: '6px',
+											paddingRight: '6px',
+											borderRadius: '10rem'
+										}}
+									>
+										owner
+									</Typography>
 								</>
 							)}
 						</div>
@@ -155,6 +155,7 @@ const FileListItem = ({ item }) => {
 				<ListItemSecondaryAction>
 					<IconButton
 						aria-owns={anchorEl ? 'actions-menu' : null}
+						data-testid="buttonsetting-id"
 						aria-haspopup="true"
 						onClick={handleMenuClick}
 						variant="outlined"

@@ -8,10 +8,11 @@ import '@testing-library/jest-dom';
 describe('<FileList />', () => {
 	test('renders FileList ok', async () => {
 		const store = setupStore();
-		const payload = { token: 'sometoken', user: {id: '5', username: 'some.user', displayname: 'Tony' } };
+		const payload = { token: 'sometoken', user: {id: 5, username: 'some.user', displayname: 'Tony' } };
 		const filteredFiles = [
 			{
 				id: 5,
+				userId: 5,
 				name: 'some file',
 				ext: 'some ext',
 				type: 'some type',
