@@ -66,6 +66,8 @@ const FormularioLogin = () => {
 						<TextField
 							{...field}
 							autoComplete="username"
+							data-cy="username"
+							data-testid="username"
 							type="text"
 							label="Email"
 							error={!!errors.username}
@@ -90,6 +92,8 @@ const FormularioLogin = () => {
 						<TextField
 							{...field}
 							autoComplete="password"
+							data-cy="password"
+							data-testid="password"
 							type="password"
 							label="Password"
 							error={!!errors.password}
@@ -109,6 +113,8 @@ const FormularioLogin = () => {
 
 				<Button
 					type="submit"
+					data-cy="loginBtn"
+					data-testid="loginBtn"
 					variant="contained"
 					sx={{ borderRadius: '20px', backgroundColor: 'teal' }}
 					aria-label="LOG IN"

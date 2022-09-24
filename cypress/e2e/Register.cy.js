@@ -56,6 +56,19 @@ describe('<Register />', () => {
 		cy.get('[data-cy=username] p').should('not.exist');
 		cy.get('[data-cy=loginBtn]').should('be.disabled');
 
+		cy.intercept('http://localhost:4000/**', req => {
+			const { operationName } = req.body;
+
+			req.reply(res => {
+				res.send({
+					error: [{
+						type: 'username',
+						message: 'Username already exists'
+					}]
+				});
+			});
+		}).as('getAccount');
+
 		// Try to autheticate a user with incorrect email or password
 		cy.get('[data-cy=displayname]').clear().type('Some Display Name');
 		cy.get('[data-cy=username]').clear().type('someuser@gmail.com');

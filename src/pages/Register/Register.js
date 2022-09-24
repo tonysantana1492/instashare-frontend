@@ -25,7 +25,7 @@ const Register = () => {
 						</CardContent>
 
 						<div className="flex flex-col items-center justify-center mb-10 mt-5">
-							<span className="font-normal">Already have an account?</span>
+							<span data-cy='ask-account' className="font-normal">Already have an account?</span>
 							<Link className="font-normal text-blue-500 hover:underline" to="/">
 								Login
 							</Link>

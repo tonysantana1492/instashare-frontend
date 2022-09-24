@@ -74,6 +74,7 @@ const JWTRegister = () => {
 						<TextField
 							{...field}
 							type="text"
+							data-cy="displayname"
 							label="Display name"
 							error={!!errors.displayname}
 							helperText={errors?.displayname?.message}
@@ -98,6 +99,7 @@ const JWTRegister = () => {
 							{...field}
 							type="text"
 							autoComplete = 'username'
+							data-cy="username"
 							error={!!errors.username}
 							helperText={errors?.username?.message}
 							label="Email"
@@ -120,7 +122,8 @@ const JWTRegister = () => {
 					render={({ field }) => (
 						<TextField
 							{...field}
-							autoComplete = 'new-password'
+							autoComplete = 'new-password'							
+							data-cy="password"
 							type="password"
 							label="Password"
 							error={!!errors.password}
@@ -145,6 +148,7 @@ const JWTRegister = () => {
 						<TextField
 							{...field}
 							autoComplete = 'new-password'
+							data-cy="passwordConfirm"
 							type="password"
 							label="Confirm"
 							error={!!errors.passwordConfirm}
@@ -164,6 +168,7 @@ const JWTRegister = () => {
 
 				<Button
 					type="submit"
+					data-cy='loginBtn'
 					variant="contained"
 					color="primary"
 					sx={{ borderRadius: '20px', backgroundColor: 'teal' }}
