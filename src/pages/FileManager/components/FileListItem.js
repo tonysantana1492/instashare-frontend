@@ -65,7 +65,7 @@ const FileListItem = ({ item }) => {
 					<Avatar sx={{ background: '#1b1b66', alignContent: 'center', alignItems: 'center' }}>
 						{item.name && item.name[0].toUpperCase()}
 					</Avatar>
-					<div className="flex flex-col md:flex-row items-center justify-center w-full">
+					<div className="flex flex-col md:flex-row items-center justify-center max-w-full w-full">
 						<BoardTitle
 							name={item.name}
 							id={item.id}
@@ -74,26 +74,29 @@ const FileListItem = ({ item }) => {
 							handleOpenForm={handleOpenForm}
 							handleCloseForm={handleCloseForm}
 						></BoardTitle>
-						<div className="flex pl-12 w-full md:w-1/2 items-center justify-start md:justify-start">
-							<span className=" text-grey-500 ">{item.ext}</span>
-							<Typography
-								component="span"
-								variant="body2"
-								sx={{ display: 'inline', marginRight: 1, marginLeft: 1, color: 'gray' }}
-								color="textPrimary"
-							>
-								|
-							</Typography>
-							<span className=" text-grey-500  ">
-								{item.size === '' ? '-' : formatSize(item.size)}
-							</span>
-							
+						<div className="flex pl-6 md:pl-12 max-w-full w-full md:w-1/2 items-center justify-center sm:mr-10 sm:justify-end">
+							{alloEdit && (
+								<Typography
+									component="span"
+									sx={{
+										color: 'black',
+										fontSize: '12px',
+										backgroundColor: '#fbed8d',
+										paddingLeft: '6px',
+										paddingRight: '6px',
+										borderRadius: '10rem'
+									}}
+								>
+									owner
+								</Typography>
+							)}
 							{item.status ? (
 								<Typography
-									className="font-normal hover:underline cursor-pointer"
+									className="font-normal"
 									component="span"
 									sx={{
 										color: 'green',
+										fontSize: '12px',
 										backgroundColor: '#c2f9db',
 										paddingLeft: '6px',
 										paddingRight: '6px',
@@ -101,7 +104,7 @@ const FileListItem = ({ item }) => {
 										marginRight: '8px',
 										borderRadius: '10rem'
 									}}
-									onClick={() => dispatch(downloadFile(item.id, item.name))}
+									// onClick={() => dispatch(downloadFile(item.id, item.name))}
 								>
 									downloadable
 								</Typography>
@@ -110,6 +113,7 @@ const FileListItem = ({ item }) => {
 									component="span"
 									sx={{
 										color: 'red',
+										fontSize: '12px',
 										backgroundColor: '#efe5e5',
 										paddingLeft: '6px',
 										paddingRight: '6px',
@@ -121,22 +125,15 @@ const FileListItem = ({ item }) => {
 									undownloadable
 								</Typography>
 							)}
-							{alloEdit && (
-								
-									<Typography
-										component="span"
-										sx={{
-											color: 'black',
-											backgroundColor: '#fbed8d',
-											paddingLeft: '6px',
-											paddingRight: '6px',
-											borderRadius: '10rem'
-										}}
-									>
-										owner
-									</Typography>
-								
-							)}
+							<Typography
+								component="span"
+								sx={{
+									color: 'gray',
+									fontSize: '12px'
+								}}
+							>
+								{`${item.ext} | ${item.size === '' ? '-' : formatSize(item.size)}`}
+							</Typography>
 						</div>
 					</div>
 				</div>

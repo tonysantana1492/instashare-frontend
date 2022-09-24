@@ -45,7 +45,7 @@ const NameEditable = ({ id, name, userId, formOpen, handleOpenForm, handleCloseF
 	}
 
 	return (
-		<div className="flex justify-center w-full md:w-1/2">
+		<div className="flex justify-center max-w-full w-full md:w-1/2">
 			{formOpen ? (
 				<ClickAwayListener onClickAway={handleCloseForm}>
 					<Paper variant='hiden' className='flex flex-col justify-center w-full ml-5'>
