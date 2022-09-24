@@ -19,6 +19,8 @@ function request(method) {
         };
         if (body) {
             requestOptions.headers['Content-Type'] = 'application/json';
+            requestOptions.headers['Access-Control-Allow-Origin'] = '*';
+            requestOptions.headers['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE,PATCH,OPTIONS';
             requestOptions.body = JSON.stringify(body);
         }
         return fetch(url, requestOptions).then(handleResponse);
