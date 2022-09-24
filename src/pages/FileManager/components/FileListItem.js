@@ -74,22 +74,8 @@ const FileListItem = ({ item }) => {
 							handleOpenForm={handleOpenForm}
 							handleCloseForm={handleCloseForm}
 						></BoardTitle>
-						<div className="flex pl-6 md:pl-12 max-w-full w-full md:w-1/2 items-center justify-center sm:mr-10 sm:justify-end">
-							{alloEdit && (
-								<Typography
-									component="span"
-									sx={{
-										color: 'black',
-										fontSize: '12px',
-										backgroundColor: '#fbed8d',
-										paddingLeft: '6px',
-										paddingRight: '6px',
-										borderRadius: '10rem'
-									}}
-								>
-									owner
-								</Typography>
-							)}
+						<div className="flex pl-6 md:pl-12 max-w-full w-full md:w-1/2 items-center justify-center sm:mr-10 sm:justify-start">
+							
 							{item.status ? (
 								<Typography
 									className="font-normal"
@@ -129,11 +115,28 @@ const FileListItem = ({ item }) => {
 								component="span"
 								sx={{
 									color: 'gray',
-									fontSize: '12px'
+									fontSize: '12px',
+									fontWeight: '700'
 								}}
 							>
 								{`${item.ext} | ${item.size === '' ? '-' : formatSize(item.size)}`}
 							</Typography>
+							{alloEdit && (
+								<Typography
+									component="span"
+									sx={{
+										color: 'black',
+										fontSize: '12px',
+										backgroundColor: '#fbed8d',
+										paddingLeft: '6px',
+										paddingRight: '6px',										
+										marginLeft: '12px',
+										borderRadius: '10rem'
+									}}
+								>
+									owner
+								</Typography>
+							)}
 						</div>
 					</div>
 				</div>

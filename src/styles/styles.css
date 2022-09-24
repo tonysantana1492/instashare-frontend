@@ -795,8 +795,8 @@ video {
     margin-right: 1.0rem;
   }
 
-  .sm\:justify-end {
-    justify-content: flex-end;
+  .sm\:justify-start {
+    justify-content: flex-start;
   }
 
   .sm\:text-20 {
