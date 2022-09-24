@@ -144,6 +144,7 @@ const FileListItem = ({ item }) => {
 				<ListItemSecondaryAction>
 					<IconButton
 						aria-owns={anchorEl ? 'actions-menu' : null}
+						data-cy="setting-button"
 						data-testid="buttonsetting-id"
 						aria-haspopup="true"
 						onClick={handleMenuClick}
@@ -154,13 +155,13 @@ const FileListItem = ({ item }) => {
 					</IconButton>
 					<Menu id="actions-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
 						<MenuItem onClick={handleOpenForm} disabled={!alloEdit}>
-							<ListItemIcon className="min-w-40">
+							<ListItemIcon data-cy="edit-button" className="min-w-40">
 								<Edit></Edit>
 							</ListItemIcon>
 							<ListItemText primary="Rename File" />
 						</MenuItem>
-						<MenuItem onClick={() => dispatch(downloadFile(item.id, item.name))} disabled={!item.status}>
-							<ListItemIcon className="min-w-40">
+						<MenuItem data-cy="download-button" onClick={() => dispatch(downloadFile(item.id, item.name))} disabled={!item.status}>
+							<ListItemIcon  className="min-w-40">
 								<Download></Download>
 							</ListItemIcon>
 							<ListItemText primary="Download" />

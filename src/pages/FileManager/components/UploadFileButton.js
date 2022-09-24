@@ -32,7 +32,7 @@ const UploadFileButton = () => {
 		<div className="flex items-center">
 			<input accept="*" className=" hidden" id="icon-button-file" type="file" onChange={handleButtonClick} />
 			<label className="m-1 relative" htmlFor="icon-button-file">
-				<IconButton data-testid="iconbutton-id" aria-label="upload picture" component="span">
+				<IconButton  data-cy="upload-button" data-testid="iconbutton-id" aria-label="upload picture" component="span">
 					{success ? <Check /> : <UploadFile />}
 				</IconButton>
 				{loading && (

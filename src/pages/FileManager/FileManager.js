@@ -22,7 +22,6 @@ const FileManager = () => {
 
 	const filteredFiles = files.filter(s => s.name.toLowerCase().startsWith(searchString.toLowerCase()));
 
-
 	useEffect(() => {
 		dispatch(getFiles());
 	}, [dispatch]);
@@ -35,16 +34,19 @@ const FileManager = () => {
 		<motion.div initial={{ y: 0, opacity: 0.1 }} animate={{ y: 0, opacity: 1, transition: { delay: 0.2 } }}>
 			<div className="max-h-screen h-screen pt-44 overflow-hidden bg-grey-200 px-14">
 				<div className="flex justify-between pb-3">
-					<Buscador searchString={searchString} setSearchString={setSearchString}></Buscador>
+					<Buscador						
+						searchString={searchString}
+						setSearchString={setSearchString}
+					></Buscador>
 					<div className="flex">
 						<CircularIntegration></CircularIntegration>
-						<IconButton variant="extended" onClick={() => dispatch(getFiles())}>
+						<IconButton data-cy="refresh-button" variant="extended" onClick={() => dispatch(getFiles())}>
 							<Refresh />
 						</IconButton>
 					</div>
 				</div>
 
-				<Paper variant='outlined' className="h-9/6 overflow-auto">
+				<Paper variant="outlined" className="h-9/6 overflow-auto">
 					<FileList filteredFiles={filteredFiles}></FileList>
 				</Paper>
 			</div>

@@ -5,6 +5,7 @@ const Buscador = ({searchString, setSearchString }) => {
 	return (
 		<Paper className='flex items-center justify-center' component="form" variant="outlined">
 			<InputBase
+				data-cy="search-component"
 				value={searchString}
 				sx={{ marginLeft: '10px' }}
 				placeholder="Search..."
