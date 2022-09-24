@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', (username, password) => {
+	cy.visit('/');
+
+	cy.get('[data-cy=username] input').clear();
+	cy.get('[data-cy=password] input').clear();
+	cy.get('[data-cy=username]').type( username || 'tonysantana1492@gmail.com');
+	cy.get('[data-cy=password]').type(password || 'TonySantana1492');
+
+	cy.get('[data-cy=loginBtn]').click();
+	cy.window().its('localStorage.jwt_access_token').should('be.a', 'string');
+});
