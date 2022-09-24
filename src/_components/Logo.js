@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 const Logo = () => {
 
     return (
-		<div className="flex">
+		<div data-cy='logo' className="flex">
 		<Typography sx={{ color: 'gray' }} component="span" variant="h6">
 			insta
 		</Typography>

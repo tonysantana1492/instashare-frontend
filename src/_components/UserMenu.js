@@ -20,7 +20,7 @@ const UserMenu = () => {
 
 	return (
 		<>
-			<Button data-testid="usermenu-id" className="focus:outline-none min-h-40 min-w-40 px-0 md:px-16 py-0 md:py-6" onClick={userMenuClick}>
+			<Button data-cy="usermenu-id" data-testid="usermenu-id" className="focus:outline-none min-h-40 min-w-40 px-0 md:px-16 py-0 md:py-6" onClick={userMenuClick}>
 				<Avatar className="md:mx-4" sx={{ background: 'teal' }}>
 					{user.displayname && user.displayname[0]}
 				</Avatar>
@@ -54,6 +54,7 @@ const UserMenu = () => {
 					</div>
 					<Divider></Divider>
 					<MenuItem
+						data-cy="button-loggout"
 						onClick={() => {
 							// dispatch(setUserLoggedOut());
 							JwtService.setSession(null);
