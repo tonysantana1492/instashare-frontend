@@ -43,7 +43,7 @@ const UserMenu = () => {
 				}}
 			>
 				<>
-					<div className="hidden md:flex flex-col items-center justify-center p-10">
+					<div className="md:flex flex-col items-center justify-center p-10">
 						<Typography component="span" className="text-black font-600 flex capitalize">
 							{user.displayname}
 						</Typography>
